@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.css"> 
+    <script>
+      function preventFormSubmit() {
+        var forms = document.querySelectorAll('form');
+        for (var i = 0; i < forms.length; i++) {
+          forms[i].addEventListener('submit', function(event) {
+            event.preventDefault();
+          });
+        }
+      }
+
+      window.addEventListener('load', preventFormSubmit);
+
+      function catcherFormSubmit(objetoFormulario) {
+        google.script.run.withSuccessHandler(procesarRespuesta).procesarFormulario(objetoFormulario)
+      }
+
+      function procesarRespuesta(){
+        var contenido = document.getElementById('contenido');
+        contenido.innerHTML = 'Todo bien <input type="button" value="Close" onclick="google.script.host.close()" />';
+      }
+    </script>
+  </head>
+  <body>
+    <h1>Hola mundo</h1>
+    <div id="contenido">
+      <form id="formulario" name="formulario" onsubmit="catcherFormSubmit(this)">
+        <p>Nombre: <input type="text" id="minombre" name="minombre" /></p>
+        <p>Edad: <input type="number" id="miedad" name="miedad" /></p>
+        <p>Color: <input type="text" id="color" name="color" /></p>
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
+  </body>
+</html>
