@@ -1,2 +1,2 @@
 # JQuery-Forms
-UIApp form usgni JQquery
+UIApp Form and JQuery Ui on Google Apps Script
